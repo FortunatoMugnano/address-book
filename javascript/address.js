@@ -22,7 +22,6 @@ document.querySelector("#saveEntry").addEventListener("click", event => {
 
 })
 
-
 document.querySelector("#saveWish").addEventListener("click", event => {
     /*
         Collect the user put by selecting the input fields, one
@@ -30,6 +29,7 @@ document.querySelector("#saveWish").addEventListener("click", event => {
     */
     const personProduct = document.querySelector("#product").value
     const personShop = document.querySelector("#shop").value
+
 
     // Once you have collected all the values, update the DOM
     // with some HTML
@@ -40,3 +40,42 @@ document.querySelector("#saveWish").addEventListener("click", event => {
     `
 
 })
+
+
+
+
+const HTMLGenerator = (object) => {
+    return `
+    <h2>${object.name}</h2>
+    <p>${object.birthday}</p>`
+}
+
+let objectBuilder = (nameValue, birthdayValue) => {
+    let object = {
+        name: nameValue,
+        birthday: birthdayValue
+    }
+    return object
+}
+
+
+
+document.querySelector("#saveBirth").addEventListener("click", event => {
+    let personNameBirthday = document.querySelector("#name").value
+    let personBirthday = document.querySelector("#birthday").value
+    let birthdayList = document.querySelector("#saveBirthday")
+    if (personNameBirthday === "" || personBirthday === "") {
+        alert("Fill it please")
+    }
+    else {
+        birthdayList.innerHTML += HTMLGenerator(objectBuilder(personNameBirthday, personBirthday))
+        let nameBox = document.querySelector("#name")
+        nameBox.value = ""
+        nameBox.focus()
+        let birthdayBox = document.querySelector("#birthday")
+        birthdayBox.value = ""
+    
+    }
+    
+})
+
